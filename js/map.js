@@ -13,22 +13,22 @@ let devLevel = {
 }
 
 function loadLevel(level) {
-    for (let i = 0; i < level.length; i++){
-        let currentEntry = level[i];
-        let element = document.createElement("div");
+    for (let i = 0; i < level.length; i++) {
+        let currentEntry = level[i]
+        let element = document.createElement("div")
         
-        element.className = "square";
-        element.id = "square" + i;
-        element.style.width = currentEntry[6] + "px";
-        element.style.height = currentEntry[7] + "px";
+        element.className = "square"
+        element.id = "square" + i
+        element.style.width = currentEntry[6] + "px"
+        element.style.height = currentEntry[7] + "px"
 
         element.style.transform = getTransform( 
             vec3(currentEntry[0], currentEntry[1], currentEntry[2]), 
             vec3(currentEntry[3], currentEntry[4], currentEntry[5])
         )
 
-        element.style.backgroundImage = "url(img/" + currentEntry[8] + ")";
-        document.getElementById("world").append(element);
+        element.style.backgroundImage = "url(img/" + currentEntry[8] + ")"
+        document.getElementById("world").append(element)
     } 
 }
 
