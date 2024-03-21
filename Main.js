@@ -27,16 +27,25 @@ function onKeyRelese( event ) {
         keymap[ event.code ] = 0
     }
 }
-function onMouseMove( event ) { 
-	if ( !lockedPointer ) return
+// function onMouseMove( event ) { 
+// 	if ( !lockedPointer ) return
 	
-	playerRotation.y += ( event.movementX || 0 ) * sensitivity
-    playerRotation.x -= ( event.movementY || 0 ) * sensitivity
+// 	playerRotation.y += ( event.movementX || 0 ) * sensitivity
+//     playerRotation.x -= ( event.movementY || 0 ) * sensitivity
 
-	// console.log( event )
+// 	// console.log( event )
 
-    playerRotation.x = clamp( -70, 70, playerRotation.x )
- }
+//     playerRotation.x = clamp( -70, 70, playerRotation.x )
+//  }
+
+ let deltaMouseX = 0, deltaMouseY = 0
+function onMouseMove( event ) {
+    if ( !lockedPointer ) return
+
+    deltaMouseX = event.movementX * sensitivity
+    deltaMouseY = event.movementY * sensitivity
+}
+
 
 document.addEventListener( "keydown", onKeyPress )
 document.addEventListener( "keyup", onKeyRelese )

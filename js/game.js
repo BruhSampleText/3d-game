@@ -1,15 +1,25 @@
 
 
 
+let last = performance.now()
 function game() {
+    let current = performance.now()
+    let dt = current - last
+    last = current
 
-    updatePlayer(  )
+    dt /= 1e3
+    if (dt > 2) {
+        dt = 1
+    }
+
+    updatePlayer( dt )
 
     request = requestAnimationFrame( game )
 }
 
 window.onload = () => {
-    loadLevel( devLevel )
+
+    loadNewWorld( testMap )
 
     game()
 }

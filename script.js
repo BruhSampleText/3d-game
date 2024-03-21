@@ -90,13 +90,6 @@ function onKeyRelese( event ) {
         keymap[ event.code ] = false
     }
 }
-function onMouseMove( event ) {
-    if ( !lockedPointer ) return
-
-    rotation.y += event.movementX * sensitivity
-    rotation.x -= event.movementY * sensitivity
-}
-
 //Update functions
 
 function updateWorld() {
