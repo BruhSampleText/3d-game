@@ -5,18 +5,19 @@
 	border: 2px solid #000000;
 	perspective: 600px;
 	overflow: hidden;
-}
-#world {
+  }
+  #world {
 	position: absolute;
 	width: inherit;
 	height: inherit;
 	transform-style: preserve-3d;
-}
-.square {
+  }
+  .square {
 	position: absolute;
-}
-
-.circle {
+  }
+  
+  .circle {
 	position: absolute;
 	border-radius: 25px;
-}
+  }
+  

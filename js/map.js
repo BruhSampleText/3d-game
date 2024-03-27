@@ -1,37 +1,3 @@
-let testMap = [
-    [0, 0, 1000, 0, 180, 0, 2000, 600, "url('img/brick.jpg')", "ff0000"],
-    [0, 0, -1000, 0, 0, 0, 2000, 600, "url('img/brick.jpg')", "ff0000"],
-    [1000, 0, 0, 0, -90, 0, 2000, 600, "url('img/brick.jpg')", "ff0000"],
-    [-1000, 0, 0, 0, 90, 0, 2000, 600, "url('img/brick.jpg')", "ff0000"],
-    [0, 100, 0, 90, 0, 0, 3000, 2000, "url('img/brick.jpg')", "00ff00"], //floor
-
-    //Patric's wall
-    [500, 0, 580, 0, 0, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [500, 0, 600, 0, 0, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [0, 0, 590, 0, 90, 0, 20, 600, "url('img/brick.jpg')", "ff0000"],
-    //Altyshka's wall
-    [-500, 0, 500, 0, 90, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [-480, 0, 500, 0, 90, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [-490, 0, 0, 0, 0, 0, 20, 600, "url('img/brick.jpg')", "ff0000"],
-    //Antelz's wall
-    [680,0,-500, 0, 90, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [700, 0,-500, 0, 90, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [690, 0,0, 0, 0, 0, 20, 600, "url('img/brick.jpg')", "ff0000"],
-    //Adheeksha's wall
-    [-500, 0, -580, 0, 0, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [-500, 0, -600, 0, 0, 0, 1000, 600, "url('img/brick.jpg')", "ff0000"],
-    [0, 0, -590, 0, 90, 0, 20, 600, "url('img/brick.jpg')", "ff0000"], 
-
-//     // Grīda
-//     [0, 0, -300, 90, 0, 0, 1500, 500, "url('img/floor.jpg')", "#000000"],
-//     //griesti
-//     [0, 0, 0, 90, 0, 0, 1500, 500, "url('img/tree.jpg')", "#000000"],
-//     // Siena
-//     [0, 50, -50, 0, 0, 0, 1500, 300, "url('img/brick.jpg')", "#fc865d"],
-//     [0, 50, 450, 0, 0, 0, 1500, 300, "url('img/brick.jpg')", "#fc865d"],
-//     [750,50, -200, 0, 90, 0, 500, 300, "url('img/brick.jpg')", "#fc865d"],
-//     [750, 50, 1300, 0, 90, 0, 500, 300, "url('img/brick.jpg')", "#fc865d"],
-]
 
 let loadNewWorld = function( worldArray ) {
     for ( let index = 0; index < worldArray.length; index++ ) {
@@ -43,7 +9,7 @@ let loadNewWorld = function( worldArray ) {
         element.id = "div_"+index
 
         element.style.backgroundColor = entry[ 9 ]
-        element.style.backgroundImage = "url(img/zogs.jpg)"
+        element.style.backgroundImage = entry[ 8 ]
 
         element.style.width = entry[ 6 ] + "px"
         element.style.height = entry[ 7 ] + "px"
@@ -69,3 +35,39 @@ let loadNewWorld = function( worldArray ) {
         world.appendChild( element )
     }
 }
+
+function CreateNewWorld(myMap) {
+    for (let i = 0; i < myMap.length; i++) {
+      let newElement = document.createElement("div");
+      newElement.className = "square";
+      newElement.id = "square" + i;
+      newElement.style.width = myMap[i][6] + "px";
+      newElement.style.height = myMap[i][7] + "px";
+  
+      if (myMap[i][8] == null) {
+        newElement.style.background = myMap[i][9];
+      } else {
+        newElement.style.backgroundImage = myMap[i][8];
+      }
+  
+      newElement.style.transform =
+        "translate3d(" +
+        (600 - myMap[i][6] / 2 + myMap[i][0]) +
+        "px," +
+        (400 - myMap[i][7] / 2 + myMap[i][1]) +
+        "px," +
+        myMap[i][2] +
+        "px)" +
+        "rotateX(" +
+        myMap[i][3] +
+        "deg)" +
+        "rotateY(" +
+        myMap[i][4] +
+        "deg)" +
+        "rotateZ(" +
+        myMap[i][5] +
+        "deg)";
+  
+      world.append(newElement);
+    }
+  }

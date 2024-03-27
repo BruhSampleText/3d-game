@@ -19,7 +19,7 @@ function game() {
 
 window.onload = () => {
 
-    loadNewWorld( testMap )
+    CreateNewWorld( devLevel.geometry )
 
     game()
 }
