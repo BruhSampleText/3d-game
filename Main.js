@@ -6,7 +6,7 @@ const deg = Math.PI / 180
 let sensitivity = 0.1
 let lockedPointer = false
 
-let worldGravity
+var worldGravity = 10
 let groundFriction = 0.1
 let worldGroundLevel = 0
 

@@ -3,9 +3,12 @@ let playerVelocity = vec3( 0, 0, 0 )
 let playerRotation = vec3( 0, 0, 0 )
 
 let movementSpeed = 450
-let jumpPower = 13
+let jumpPower = 4
+let speedIncrease = 1
 
 let onGround = true
+let approximateGround = 4
+let hasJumped = false
 
 let collisionCheck = ( mapObj ) => {
 
@@ -41,9 +44,10 @@ let collisionCheck = ( mapObj ) => {
               if(point3[1] > point2[1]){
                 onGround = true;
               }
-            } else {
+            } 
+            /*else {
                 playerVelocity.y = y1 - y0;
-            }
+            }*/
           }
         }
       };
@@ -51,6 +55,21 @@ let collisionCheck = ( mapObj ) => {
 
 
 updatePlayer = ( dt ) => {
+    if (keymap.Space && !hasJumped) {
+        playerVelocity.y = jumpPower
+    } else if (playerPosition.y <= worldGroundLevel) {
+        playerPosition.y = worldGroundLevel
+    } else {
+        playerVelocity.y -= worldGravity*dt
+    }
+
+    if (playerPosition.y > worldGroundLevel + approximateGround) {
+        hasJumped = true
+        speedIncrease = 1.2
+    } else if (playerPosition.y < worldGroundLevel + approximateGround) {
+        hasJumped = false
+        speedIncrease = 1
+    }
 
     let dirForward = keymap.KeyW - keymap.KeyS
     let dirSideways = keymap.KeyA - keymap.KeyD
@@ -59,8 +78,8 @@ updatePlayer = ( dt ) => {
     let cos = Math.cos( angle )
     let sin = Math.sin( angle )
 
-    playerVelocity.x = (cos * dirSideways - sin * dirForward) * movementSpeed * dt
-    playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * dt
+    playerVelocity.x = (cos * dirSideways - sin * dirForward) * movementSpeed * speedIncrease * dt
+    playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
 
     // playerVelocity = checkForCollision( testMap, playerPosition, playerVelocity )
     collisionCheck( devLevel.geometry )
