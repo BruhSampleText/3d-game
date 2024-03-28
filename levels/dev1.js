@@ -1,21 +1,22 @@
+// Pozīcija  Rotācija  Izmēri              Īpašības
+// x, y, z,  x, y, z,  platums, augstums,  attēls/krāsa,  neflīze?  
+// 0  1  2   3  4  5   6        7          8              9
+
 var devLevel = {
     meta: {
         groundFriction: 1,
         playerHeight: 150,
-        gravity : { x : 0, y : -5, z : 0 }
+        gravity : { x : 0, y : -5, z : 0 },
     },
 
     geometry: [
-        [0, 0, 1500, 0, 180, 0, 3000, 1200, "url('img/wall.jpg')", "ff0000"],
-        [0, 0, -1500, 0, 0, 0, 3000, 1200, "url('img/wall.jpg')", "ff0000"],
-        [1500, 0, 0, 0, -90, 0, 3000, 1200, "url('img/wall.jpg')", "ff0000"],
-        [-1500, 0, 0, 0, 90, 0, 3000, 1200, "url('img/wall.jpg')", "ff0000"],
-        [0, 100, 0, 90, 0, 0, 3000, 3000, "url('img/wall.jpg')", "00ff00"], //floor
-        [0, 0, 500, 0, 0, 0, 1500, 1200, null, "yellow"]
+        [0, 0, 1500, 0, 180, 0, 3000, 1200, "wall.jpg"],
+        [0, 0, -1500, 0, 0, 0, 3000, 1200, "wall.jpg"],
+        [1500, 0, 0, 0, -90, 0, 3000, 1200, "wall.jpg"],
+        [-1500, 0, 0, 0, 90, 0, 3000, 1200, "wall.jpg"],
+        [0, 100, 0, 90, 0, 0, 3000, 3000, "wall.jpg"],
     ],
 
     objects : [
-        // Monēta
-        [45, 350, 0, 0, 0, 0, 100, 100, "1EURO.png", null, 'coin']
     ]
 }
