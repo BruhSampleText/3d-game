@@ -9,7 +9,7 @@ let loadNewWorld = function( worldArray ) {
         element.id = "div_"+index
 
         element.style.backgroundColor = entry[ 9 ]
-        element.style.backgroundImage = entry[ 8 ]
+        element.style.backgroundImage =  "url('img/wall.jpg')" //entry[ 8 ]
 
         element.style.width = entry[ 6 ] + "px"
         element.style.height = entry[ 7 ] + "px"
@@ -47,7 +47,7 @@ function CreateNewWorld(myMap) {
       if (myMap[i][8] == null) {
         newElement.style.background = myMap[i][9];
       } else {
-        newElement.style.backgroundImage = myMap[i][8];
+        newElement.style.backgroundImage =  "url('img/wall.jpg')" //entry[ 8 ]//myMap[i][8];
       }
   
       newElement.style.transform =
