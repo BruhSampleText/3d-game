@@ -56,7 +56,7 @@ function CreateNewWorld(myMap) {
         "px," +
         (400 - myMap[i][7] / 2 + myMap[i][1]) +
         "px," +
-        myMap[i][2] +
+        -myMap[i][2] +
         "px)" +
         "rotateX(" +
         myMap[i][3] +
