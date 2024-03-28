@@ -47,7 +47,7 @@ function CreateNewWorld(myMap) {
       if (myMap[i][8] == null) {
         newElement.style.background = myMap[i][9];
       } else {
-        newElement.style.backgroundImage =  "url('img/wall.jpg')" //entry[ 8 ]//myMap[i][8];
+        newElement.style.backgroundImage = myMap[i][8];
       }
   
       newElement.style.transform =
