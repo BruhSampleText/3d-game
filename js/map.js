@@ -20,7 +20,7 @@ let loadNewWorld = ( worldArray ) => {
             "px," +
             (400 - entry[7] / 2 + entry[1]) +
             "px," +
-            entry[2] +
+            -entry[2] +
             "px)" +
             "rotateX(" +
             entry[3] +
