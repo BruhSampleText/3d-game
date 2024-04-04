@@ -14,6 +14,7 @@
 
 #topBar {
 	position: absolute;
+	display: flex;
 	width: 600px;
 	height: 100px;
 	margin-top: 20px;
@@ -23,9 +24,26 @@
 	z-index: 1;
 }
 
+.topBox {
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	margin-top: 20px;
+	text-align: center;
+}
 #timeBox {
+	margin-top: 15px;
+	margin-left: 46.5%;
+}
+#fpsBox {
 	margin-top: 40px;
-	margin-left: 50%;
+	margin-left: 46.5%;
+}
+#pointsBox {
+	margin-left: 6.5%;
+}
+#keyCountBox {
+	margin-left: 86.5%;
 }
 
 #container {
