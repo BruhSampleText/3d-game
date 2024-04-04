@@ -3,12 +3,17 @@ let playerVelocity = vec3( 0, 0, 0 )
 let playerRotation = vec3( 0, 0, 0 )
 
 let movementSpeed = 450
+let noclipSpeed = 20
 let jumpPower = 4
 let speedIncrease = 1
 
 let onGround = true
 let approximateGround = 4
 let hasJumped = false
+
+let playerFlags = {
+  noclip: false
+}
 
 let collisionCheck = ( mapObj ) => {
 
@@ -37,7 +42,6 @@ let collisionCheck = ( mapObj ) => {
             let point2 = coorReTransform(point1[0],point1[1],point1[2],mapObj[i][3],mapObj[i][4],mapObj[i][5]);
             let point3 = coorReTransform(point1[0],point1[1],0,mapObj[i][3],mapObj[i][4],mapObj[i][5]);
             playerVelocity.x = point2[0] - x0;
-            playerVelocity.y = point2[1] - y0;
             playerVelocity.z = point2[2] - z0;
     
             if(Math.abs(normal[1]) > 0.8){
@@ -55,20 +59,33 @@ let collisionCheck = ( mapObj ) => {
 
 
 updatePlayer = ( dt ) => {
-    if (keymap.Space && !hasJumped) {
-        playerVelocity.y = jumpPower
-    } else if (playerPosition.y <= worldGroundLevel) {
-        playerPosition.y = worldGroundLevel
-    } else {
-        playerVelocity.y -= worldGravity*dt
-    }
+    if (playerFlags.noclip) {
+      playerVelocity = vec3(0, 0, 0)
 
-    if (playerPosition.y > worldGroundLevel + approximateGround) {
-        hasJumped = true
-        speedIncrease = 1.2
-    } else if (playerPosition.y < worldGroundLevel + approximateGround) {
-        hasJumped = false
-        speedIncrease = 1
+      if (keymap.KeyE && !keymap.KeyQ) {
+        playerPosition.y += noclipSpeed
+      } else if (keymap.KeyQ && !keymap.KeyE) {
+        playerPosition.y -= noclipSpeed
+      }
+
+    } else {
+
+      if (keymap.Space && !hasJumped) {
+        playerVelocity.y = jumpPower
+      } else if (playerPosition.y <= worldGroundLevel) {
+          playerPosition.y = worldGroundLevel
+      } else {
+          playerVelocity.y -= worldGravity*dt
+      }
+
+      if (playerPosition.y > worldGroundLevel + approximateGround) {
+          hasJumped = true
+          speedIncrease = 1.2
+      } else if (playerPosition.y < worldGroundLevel + approximateGround) {
+          hasJumped = false
+          speedIncrease = 1
+      }
+
     }
 
     let dirForward = keymap.KeyW - keymap.KeyS
@@ -82,11 +99,15 @@ updatePlayer = ( dt ) => {
     playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
 
     // playerVelocity = checkForCollision( testMap, playerPosition, playerVelocity )
-    collisionCheck( currentLevelGeo )
+    if (playerFlags.noclip) {
+
+    } else {
+      collisionCheck( currentLevelGeo )
+    }
 
     playerPosition = addVec3( playerPosition, playerVelocity )
 
-    playerPosition.y += (keymap.KeyE - keymap.KeyQ) * movementSpeed * dt
+    // playerPosition.y += (keymap.KeyE - keymap.KeyQ) * movementSpeed * dt
 
     playerRotation.y += dt * deltaMouseX * movementSpeed / 3
     playerRotation.x -= dt * deltaMouseY * movementSpeed / 3

@@ -18,7 +18,7 @@ let updatePlayer = () => {}
 
 //	Getting player input!
 let keymap = { 
-    KeyA : 0, KeyD : 0, KeyW : 0, KeyS : 0, KeyQ : 0, KeyE : 0, ShiftLeft : 0, KeyZ : 0, ControlLeft : 0, Space : 0
+    KeyA : 0, KeyD : 0, KeyW : 0, KeyS : 0, KeyQ : 0, KeyE : 0, ShiftLeft : 0, KeyZ : 0, ControlLeft : 0, Space : 0, KeyV : 0,
 }
 
 function onKeyPress( event ) {
@@ -27,6 +27,10 @@ function onKeyPress( event ) {
     }
 }
 function onKeyRelese( event ) {
+    if (keymap.KeyV) {
+        playerFlags.noclip = !playerFlags.noclip
+    }
+
     if ( keymap[ event.code ] != null ) {
         keymap[ event.code ] = 0
     }
