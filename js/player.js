@@ -62,7 +62,7 @@ updatePlayer = ( dt ) => {
     playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
 
     // playerVelocity = checkForCollision( testMap, playerPosition, playerVelocity )
-    collisionCheck( devLevel.geometry )
+    collisionCheck( currentLevelGeo )
 
     playerPosition = addVec3( playerPosition, playerVelocity )
 
