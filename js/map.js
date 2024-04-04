@@ -16,11 +16,11 @@ let loadNewWorld = ( worldArray ) => {
 
         element.style.transform = 
             "translate3d(" +
-            (600 -entry[6] / 2 + entry[0]) +
+            (600 -entry[6] / 2 + -entry[0]) +
             "px," +
             (400 - entry[7] / 2 + entry[1]) +
             "px," +
-            entry[2] +
+            -entry[2] +
             "px)" +
             "rotateX(" +
             entry[3] +
