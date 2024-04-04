@@ -1,6 +1,6 @@
-let playerPosition = vec3( 0,  0,  0 )
-let playerVelocity = vec3( 0,  0,  0 )
-let playerRotation = vec3( 0,  0,  0 )
+let playerPosition = vec3( 0, 0, 0 )
+let playerVelocity = vec3( 0, 0, 0 )
+let playerRotation = vec3( 0, 0, 0 )
 
 let movementSpeed = 450
 let jumpPower = 4
