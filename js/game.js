@@ -20,7 +20,7 @@ function game() {
 window.onload = () => {
 
     // loadNewWorld( devLevel.geometry )
-    loadLevel( "devLevel" )
+    loadLevel( "peat" )
 
     game()
 }
