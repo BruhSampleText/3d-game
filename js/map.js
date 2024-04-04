@@ -52,7 +52,7 @@ function CreateNewWorld(myMap) {
   
       newElement.style.transform =
         "translate3d(" +
-        (600 - myMap[i][6] / 2 + myMap[i][0]) +
+        (600 - myMap[i][6] / 2 - myMap[i][0]) +
         "px," +
         (400 - myMap[i][7] / 2 + myMap[i][1]) +
         "px," +
