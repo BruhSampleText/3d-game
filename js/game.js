@@ -19,7 +19,8 @@ function game() {
 
 window.onload = () => {
 
-    CreateNewWorld( devLevel.geometry )
+    // loadNewWorld( devLevel.geometry )
+    loadLevel( "devLevel" )
 
     game()
 }

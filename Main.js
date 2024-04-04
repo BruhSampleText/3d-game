@@ -10,6 +10,10 @@ var worldGravity = 10
 let groundFriction = 0.1
 let worldGroundLevel = 0
 
+let levelRegister = {}
+let currentLevelGeo = {}
+let currentLevelEntities = {}
+
 let updatePlayer = () => {}
 
 //	Getting player input!
