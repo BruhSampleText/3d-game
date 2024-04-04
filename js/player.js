@@ -61,21 +61,21 @@ updatePlayer = ( dt ) => {
     playerVelocity.x = (cos * dirSideways - sin * dirForward) * movementSpeed * speedIncrease * dt
     playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
 
-    // playerVelocity = checkForCollision( testMap,  playerPosition,  playerVelocity )
+    // playerVelocity = checkForCollision( testMap, playerPosition, playerVelocity )
     collisionCheck( devLevel.geometry )
 
-    playerPosition = addVec3( playerPosition,  playerVelocity )
+    playerPosition = addVec3( playerPosition, playerVelocity )
 
     playerPosition.y += (keymap.KeyE - keymap.KeyQ) * movementSpeed * dt
 
     playerRotation.y += dt * deltaMouseX * movementSpeed / 3
     playerRotation.x -= dt * deltaMouseY * movementSpeed / 3
 
-    playerRotation.x = clamp( -70,  70,  playerRotation.x )
+    playerRotation.x = clamp( -70, 70, playerRotation.x )
 
     deltaMouseX = 0
     deltaMouseY = 0
 
     fixRotationVector( playerRotation )
-    world.style.transform = "translateZ( 600px )" + getTransform( playerPosition,  playerRotation )
+    world.style.transform = "translateZ( 600px )" + getTransform( playerPosition, playerRotation )
 }
