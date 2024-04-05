@@ -20,7 +20,7 @@
 	margin-top: 20px;
 	margin-left: 300px;
 	/* the colour is temporary */
-	background-color: aliceblue;
+	/* background-color: aliceblue; */
 	z-index: 1;
 }
 
@@ -30,14 +30,17 @@
 	width: 40px;
 	margin-top: 20px;
 	text-align: center;
+	color: white;
+	text-shadow: 0 0 3px black, 0 0 5px black
 }
 #timeBox {
-	margin-top: 15px;
+	margin-top: 25px;
 	margin-left: 46.5%;
 }
 #fpsBox {
-	margin-top: 40px;
+	margin-top: 45px;
 	margin-left: 46.5%;
+	font-size: 12px;
 }
 #pointsBox {
 	margin-left: 6.5%;

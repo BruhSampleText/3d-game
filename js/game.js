@@ -10,7 +10,7 @@ function game() {
     }
 
     updatePlayer( dt )
-    updateWindows()
+    updateWindows( dt )
     request = requestAnimationFrame( game )
 }
 

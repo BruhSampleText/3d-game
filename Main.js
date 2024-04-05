@@ -32,6 +32,11 @@ function onKeyRelese( event ) {
         playerFlags.noclip = !playerFlags.noclip
     }
 
+    //This if statement is currently for testing other features
+    if (keymap.KeyR) {
+        truePoints = 1
+    }
+
     if ( keymap[ event.code ] != null ) {
         keymap[ event.code ] = 0
     }
