@@ -1,3 +1,5 @@
+let tellV = document.getElementById('vClipP')
+
 let showTime = document.getElementById('time')
 let showPoints = document.getElementById('points')
 let showFPS = document.getElementById('fps')
@@ -22,6 +24,7 @@ let timePassed = 0
 let opacityTop = 0
 let opacityChangeSpeed = 1
 let opacityFadeInTime = 60
+let opacityV = 0
 
 let resetSeconds = false
 let hasChanged = false
@@ -49,6 +52,12 @@ updateWindows = (dt) => {
         gameKeysThen = trueKeys
     }
 
+
+    if (playerFlags.noclip) {
+        tellV.innerHTML = 'Noclip enabled'
+    } else {
+        tellV.innerHTML = ''
+    }
 
     // For reseting the time count
     if (resetSeconds) {
