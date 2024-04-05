@@ -19,6 +19,7 @@ let updatePlayer = () => {}
 //	Getting player input!
 let keymap = { 
     KeyA : 0, KeyD : 0, KeyW : 0, KeyS : 0, KeyQ : 0, KeyE : 0, ShiftLeft : 0, KeyZ : 0, ControlLeft : 0, Space : 0, KeyV : 0,
+    KeyR : 0,
 }
 
 function onKeyPress( event ) {
@@ -29,6 +30,11 @@ function onKeyPress( event ) {
 function onKeyRelese( event ) {
     if (keymap.KeyV) {
         playerFlags.noclip = !playerFlags.noclip
+    }
+
+    //This if statement is currently for testing other features
+    if (keymap.KeyR) {
+        truePoints = 1
     }
 
     if ( keymap[ event.code ] != null ) {
