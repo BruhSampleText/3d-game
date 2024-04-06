@@ -38,9 +38,41 @@ let hasChangedTop = false
 let hasChangedSide = false
 let showWhatsHidden = false
 
+let completedTask = false
+let failedTask = false
 
-function taskMaker() {
+
+function taskMaker(taskType, objectName, objectVariable, requiredAmount, requiredTime) {
     
+    if (taskType === 1) { // Fetch quest
+        if (objectVariable === requiredAmount) {
+            completedTask = true
+            shortHand = `Task completed (${objectVariable}/${requiredAmount})`
+        } else {
+            shortHand = `Collect ${objectName} (${objectVariable}/${requiredAmount})`
+            fullHand = `Find and collect ${objectVariable} ${objectName} to finish the task and progress to the next level.
+            The ${objectName} can be found in the labyrinth.`
+        }
+    } else if (taskType === 2) { // Timed fetch quest
+        if (seconds >= requiredTime) {
+            failedTask = true
+            shortHand = `Task failed (Prepare for death)`
+            fullHand = `Find and collect ${objectVariable} ${objectName} 
+            within the next 0 seconds to finish the task and progress to the next level.
+            The ${objectName} can be found in the labyrinth.`
+        } else {
+            if (objectVariable === requiredAmount) {
+                completedTask = true
+                shortHand = `Task completed (${objectVariable}/${requiredAmount})`
+            } else {
+                shortHand = `Collect ${objectName} within ${requiredTime} seconds (${objectVariable}/${requiredAmount})`
+                fullHand = `Find and collect ${objectVariable} ${objectName} 
+                within the next ${requiredAmount-seconds} seconds to finish the task and progress to the next level.
+                The ${objectName} can be found in the labyrinth.`
+            }
+        }
+    }
+
 }
 
 
