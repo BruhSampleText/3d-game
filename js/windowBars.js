@@ -26,7 +26,7 @@ let timePassed = 0
 
 let opacityTop = 0
 let opacitySide = 0
-let opacityChangeSpeed = 1
+let opacityChangeSpeed = 1.5
 let opacityFadeInTime = 60
 let opacityV = 0
 
@@ -82,18 +82,21 @@ function updateTopBar(dt) {
 
     // For making the points and keys appear
     if (hasChangedTop) {
-        if (opacityTop === opacityFadeInTime + 100) {
+        if (opacityTop >= opacityFadeInTime + 100) {
             if (showWhatsHidden) {}
             else {
                 hasChangedTop = false
             }
+            opacityTop = opacityFadeInTime + 100
             gamePointsThen = gamePoints
             gameKeysThen = gameKeys
         } else {
             opacityTop += opacityChangeSpeed
         }
     } else {
-        if (opacityTop === 0) {}
+        if (opacityTop <= 0) {
+            opacityTop = 0
+        }
         else {
             opacityTop -= opacityChangeSpeed
         }
@@ -117,15 +120,18 @@ function updateTopBar(dt) {
 function updateSideBar(dt) {
 
     if (hasChangedSide) {
-        if (opacitySide === opacityFadeInTime + 100) {
+        if (opacitySide >= opacityFadeInTime + 100) {
             if (showWhatsHidden) {
                 hasChangedSide = false
             }
+            opacitySide = opacityFadeInTime + 100
         } else {
             opacitySide += opacityChangeSpeed
         }
     } else {
-        if (opacitySide === 0) {}
+        if (opacitySide <= 0) {
+            opacitySide = 0
+        }
         else {
             opacitySide -= opacityChangeSpeed
         }
