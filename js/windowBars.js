@@ -38,10 +38,10 @@ let hasChangedTop = false
 let hasChangedSide = false
 let showWhatsHidden = false
 
+let task = {}
 
-//This code does not work. It will be changes, but for now it is just planning.
-let createTask = (taskName, type, placement, object, objectVar, amount, time) => {
-    taskName = {
+function createTask (id, type, placement, object, objectVar, amount, time) {
+    task[id] = {
         type : type,
         placement : placement,
         object : object,
@@ -53,32 +53,30 @@ let createTask = (taskName, type, placement, object, objectVar, amount, time) =>
     }
     timeThen = seconds
     showTime = 0
-
-    return taskName
 }
 
-function updateTask(taskName, byWhat, moral) {
+function updateTask(id, byWhat, moral) {
     if (moral === 0) {
-        taskName.objectVar -= byWhat
+        task[id].objectVar -= byWhat
     } else {
-        taskName.objectVar += byWhat
+        task[id].objectVar += byWhat
     }
 }
 
 function checkTask() {
-    switch (taskName.type) {
+    switch (task[id].type) {
         case 1:
             //Fetch quest
-            if (taskName.objectVar === taskName.amount) {
-                taskName.taskComplete = true
+            if (task[id].objectVar === task[id].amount) {
+                task[id].taskComplete = true
             }
             break
         case 2:
             //Timed fetch quest
-            if (showTime === 0 && !taskName.taskComplete) {
-                taskName.taskFailed = true
-            } else if (taskName.objectVar === taskName.amount) {
-                taskName.taskComplete = true
+            if (showTime === 0 && !task[id].taskComplete) {
+                task[id].taskFailed = true
+            } else if (task[id].objectVar === task[id].amount) {
+                task[id].taskComplete = true
             }
             break
     }
@@ -86,15 +84,15 @@ function checkTask() {
 
 function updateTaskBar() {
 
-    switch (taskName.type) {
+    switch (task[id].type) {
         case 1:
             //Fetch quest
-            shortHand = `Collect ${taskName.amount} ${taskName.object}. (${taskName.objectVar}/${taskName.amount})`
+            shortHand = `Collect ${task[id].amount} ${task[id].object}. (${task[id].objectVar}/${task[id].amount})`
             break
         case 2:
             //Timed fetch quest
             showTime = time-(seconds-timeThen)
-            shortHand = `Collect ${taskName.amount} ${taskName.object} in the next ${showTime} seconds. (${taskName.objectVar}/${taskName.amount})`
+            shortHand = `Collect ${task[id].amount} ${task[id].object} in the next ${showTime} seconds. (${task[id].objectVar}/${task[id].amount})`
             break
     }
 }
@@ -174,7 +172,7 @@ function updateTopBar(dt) {
 }
 
 function updateSideBar(dt) {
-    //updateTaskBar()
+    // updateTaskBar()
 
     if (hasChangedSide) {
         if (opacitySide >= opacityFadeInTime + 100) {
