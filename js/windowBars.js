@@ -48,7 +48,8 @@ let createTask = (taskName, type, placement, object, objectVar, amount, time) =>
         objectVar : objectVar,
         amount : amount,
         time : time,
-        taskComplete : false
+        taskComplete : false,
+        taskFailed : false
     }
     timeThen = seconds
     showTime = 0
@@ -68,12 +69,22 @@ function checkTask() {
     switch (taskName.type) {
         case 1:
             //Fetch quest
+            if (taskName.objectVar === taskName.amount) {
+                taskName.taskComplete = true
+            }
+            break
+        case 2:
+            //Timed fetch quest
+            if (showTime === 0 && !taskName.taskComplete) {
+                taskName.taskFailed = true
+            } else if (taskName.objectVar === taskName.amount) {
+                taskName.taskComplete = true
+            }
+            break
     }
 }
 
 function updateTaskBar() {
-    taskName.objectVar = objectVar
-    showTime = time-(seconds-timeThen)
 
     switch (taskName.type) {
         case 1:
@@ -82,6 +93,7 @@ function updateTaskBar() {
             break
         case 2:
             //Timed fetch quest
+            showTime = time-(seconds-timeThen)
             shortHand = `Collect ${taskName.amount} ${taskName.object} in the next ${showTime} seconds. (${taskName.objectVar}/${taskName.amount})`
             break
     }
