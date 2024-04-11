@@ -16,10 +16,18 @@ let currentLevelEntities = {}
 
 let updatePlayer = () => {}
 
+var audio = new Audio('devLevel.ogg');
+audio.loop = true;
+
 //	Getting player input!
 let keymap = { 
     KeyA : 0, KeyD : 0, KeyW : 0, KeyS : 0, KeyQ : 0, KeyE : 0, ShiftLeft : 0, KeyZ : 0, ControlLeft : 0, Space : 0, KeyV : 0,
     KeyR : 0,
+}
+
+function audioStart() {
+    audio.play()
+    document.removeEventListener("keydown", audioStart)
 }
 
 function onKeyPress( event ) {
@@ -52,6 +60,7 @@ function onMouseMove( event ) {
 
 
 document.addEventListener( "keydown", onKeyPress )
+document.addEventListener( "keydown", audioStart )
 document.addEventListener( "keyup", onKeyRelese )
 document.addEventListener( "mousemove", onMouseMove )
 
