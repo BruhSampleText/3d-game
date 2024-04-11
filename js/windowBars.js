@@ -38,41 +38,10 @@ let hasChangedTop = false
 let hasChangedSide = false
 let showWhatsHidden = false
 
-// function taskMaker(taskType, objectName, objectVariable, requiredAmount, requiredTime) {
-    
-//     if (taskType === 1) { // Fetch quest
-//         if (objectVariable === requiredAmount) {
-//             completedTask = true
-//             shortHand = `Task completed (${objectVariable}/${requiredAmount})`
-//         } else {
-//             shortHand = `Collect ${objectName} (${objectVariable}/${requiredAmount})`
-//             fullHand = `Find and collect ${objectVariable} ${objectName} to finish the task and progress to the next level.
-//             The ${objectName} can be found in the labyrinth.`
-//         }
-//     } else if (taskType === 2) { // Timed fetch quest
-//         if (seconds >= requiredTime) {
-//             failedTask = true
-//             shortHand = `Task failed (Prepare for death)`
-//             fullHand = `Find and collect ${objectVariable} ${objectName} 
-//             within the next 0 seconds to finish the task and progress to the next level.
-//             The ${objectName} can be found in the labyrinth.`
-//         } else {
-//             if (objectVariable === requiredAmount) {
-//                 completedTask = true
-//                 shortHand = `Task completed (${objectVariable}/${requiredAmount})`
-//             } else {
-//                 shortHand = `Collect ${objectName} within ${requiredTime} seconds (${objectVariable}/${requiredAmount})`
-//                 fullHand = `Find and collect ${objectVariable} ${objectName} 
-//                 within the next ${requiredAmount-seconds} seconds to finish the task and progress to the next level.
-//                 The ${objectName} can be found in the labyrinth.`
-//             }
-//         }
-//     }
 
-// }
-
+//This code does not work. It will be changes, but for now it is just planning.
 let createTask = (taskName, type, placement, object, objectVar, amount, time) => {
-    let taskName = {
+    taskName = {
         type : type,
         placement : placement,
         object : object,
@@ -83,6 +52,8 @@ let createTask = (taskName, type, placement, object, objectVar, amount, time) =>
     }
     timeThen = seconds
     showTime = 0
+
+    return taskName
 }
 
 function updateTask(taskName, byWhat, moral) {
@@ -93,6 +64,13 @@ function updateTask(taskName, byWhat, moral) {
     }
 }
 
+function checkTask() {
+    switch (taskName.type) {
+        case 1:
+            //Fetch quest
+    }
+}
+
 function updateTaskBar() {
     taskName.objectVar = objectVar
     showTime = time-(seconds-timeThen)
@@ -100,11 +78,11 @@ function updateTaskBar() {
     switch (taskName.type) {
         case 1:
             //Fetch quest
-            shortHand = `Collect ${taskName.amount} ${taskName/object}. (${taskName.objectVar}/${taskName.amount})`
+            shortHand = `Collect ${taskName.amount} ${taskName.object}. (${taskName.objectVar}/${taskName.amount})`
             break
         case 2:
             //Timed fetch quest
-            shortHand = `Collect ${taskName.amount} ${taskName/object} in the next ${showTime} seconds. (${taskName.objectVar}/${taskName.amount})`
+            shortHand = `Collect ${taskName.amount} ${taskName.object} in the next ${showTime} seconds. (${taskName.objectVar}/${taskName.amount})`
             break
     }
 }
@@ -184,7 +162,7 @@ function updateTopBar(dt) {
 }
 
 function updateSideBar(dt) {
-    updateTaskBar()
+    //updateTaskBar()
 
     if (hasChangedSide) {
         if (opacitySide >= opacityFadeInTime + 100) {
