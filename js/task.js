@@ -1,6 +1,6 @@
 let task = {}
 
-function createTask (id, type, objectName, objectVariable, amount, time) {
+function createTask (id, type, objectName, objectVariable, amount, messageCompl, messageFail, time) {
     task[id] = {
         type : type,
         placement : placement,
@@ -8,6 +8,9 @@ function createTask (id, type, objectName, objectVariable, amount, time) {
         objectVariable : objectVariable,
         amount : amount,
         time : time,
+        messageCompl : messageCompl,
+        messageFail : messageFail,
+        //Not sure about the false/true booleans
         taskComplete : false,
         taskFailed : false
     }
@@ -44,14 +47,17 @@ function checkTask() {
         case 1:
             //Fetch quest
             if (task[id].objectVar === task[id].amount) {
+                shortSide = task[id].messageCompl
                 task[id].taskComplete = true
             }
             break
         case 2:
             //Timed fetch quest
             if (showTime === 0 && !task[id].taskComplete) {
+                shortSide = task[id].messageFail
                 task[id].taskFailed = true
             } else if (task[id].objectVar === task[id].amount) {
+                shortSide = task[id].messageCompl
                 task[id].taskComplete = true
                 timeThen = 0
                 showTime = 0
