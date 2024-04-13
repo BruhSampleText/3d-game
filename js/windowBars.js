@@ -31,72 +31,12 @@ let opacityFadeInTime = 60
 let opacityV = 0
 
 let shortSide = 'Find my bolts'
-let fullSide = 'The bolts are located at 9834 Main street under the doormat'
+let fullSide = ''
 
 let resetSeconds = false
 let hasChangedTop = false
 let hasChangedSide = false
 let showWhatsHidden = false
-
-let task = {}
-
-function createTask (id, type, placement, object, objectVar, amount, time) {
-    task[id] = {
-        type : type,
-        placement : placement,
-        object : object,
-        objectVar : objectVar,
-        amount : amount,
-        time : time,
-        taskComplete : false,
-        taskFailed : false
-    }
-    timeThen = seconds
-    showTime = 0
-}
-
-function updateTask(id, byWhat, moral) {
-    if (moral === 0) {
-        task[id].objectVar -= byWhat
-    } else {
-        task[id].objectVar += byWhat
-    }
-}
-
-function checkTask() {
-    switch (task[id].type) {
-        case 1:
-            //Fetch quest
-            if (task[id].objectVar === task[id].amount) {
-                task[id].taskComplete = true
-            }
-            break
-        case 2:
-            //Timed fetch quest
-            if (showTime === 0 && !task[id].taskComplete) {
-                task[id].taskFailed = true
-            } else if (task[id].objectVar === task[id].amount) {
-                task[id].taskComplete = true
-            }
-            break
-    }
-}
-
-function updateTaskBar() {
-
-    switch (task[id].type) {
-        case 1:
-            //Fetch quest
-            shortHand = `Collect ${task[id].amount} ${task[id].object}. (${task[id].objectVar}/${task[id].amount})`
-            break
-        case 2:
-            //Timed fetch quest
-            showTime = time-(seconds-timeThen)
-            shortHand = `Collect ${task[id].amount} ${task[id].object} in the next ${showTime} seconds. (${task[id].objectVar}/${task[id].amount})`
-            break
-    }
-}
-
 
 function updateTopBar(dt) {
     
@@ -172,7 +112,6 @@ function updateTopBar(dt) {
 }
 
 function updateSideBar(dt) {
-    // updateTaskBar()
 
     if (hasChangedSide) {
         if (opacitySide >= opacityFadeInTime + 100) {
