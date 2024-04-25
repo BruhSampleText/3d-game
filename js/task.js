@@ -1,4 +1,10 @@
+let currentTask = 1
+let currentLevel = 0
+
 let task = {}
+
+let startTaskExe = false
+let nextTask = false
 
 function createTask (id, type, objectName, objectVariable, amount, messageCompl, messageFail, time) {
     task[id] = {
@@ -15,7 +21,7 @@ function createTask (id, type, objectName, objectVariable, amount, messageCompl,
         taskFailed : false
     }
     timeThen = seconds
-    showTime = 0
+    timeTrack = 0
 }
 
 function updateTask(id) {
@@ -27,8 +33,8 @@ function updateTask(id) {
             break
         case 2:
             //Timed fetch quest
-            showTime = time-(seconds-timeThen)
-            shortSide = `Collect ${task[id].amount} ${task[id].objectName} in the next ${showTime} seconds. (${task[id].objectVariable}/${task[id].amount})`
+            timeTrack = time-(seconds-timeThen)
+            shortSide = `Collect ${task[id].amount} ${task[id].objectName} in the next ${timeTrack} seconds. (${task[id].objectVariable}/${task[id].amount})`
             break
     }
 }
@@ -53,16 +59,31 @@ function checkTask() {
             break
         case 2:
             //Timed fetch quest
-            if (showTime === 0 && !task[id].taskComplete) {
+            if (timeTrack === 0 && !task[id].taskComplete) {
                 shortSide = task[id].messageFail
                 task[id].taskFailed = true
             } else if (task[id].objectVar === task[id].amount) {
                 shortSide = task[id].messageCompl
                 task[id].taskComplete = true
                 timeThen = 0
-                showTime = 0
+                timeTrack = 0
+            } else {
+                timeTrack = time-(seconds-timeThen)
             }
             break
+    }
+}
+
+function clearMessage(clearWhat) {
+
+    switch (clearWhat) {
+        case 1:
+            shortHand.innerHTML = ''
+        case 2: 
+            fullHand.innerHTML = ''
+        case 3:
+        shortHand.innerHTML = ''
+        fullHand.innerHTML = ''
     }
 }
 
@@ -80,4 +101,33 @@ function removeTask(id) {
 
 function removeTaskes() {
     task = []
+}
+
+
+
+
+//[id] = string   [type] = value   [objectName] = string   [objectVariable] = value   [amount] = value
+//[messageCompl] = string   [messageFail] = string   [time] = value
+//Types:    1 is fetch quest    2 is timed fetch quest
+function executeTaskes() {
+
+    if (startTaskExe) {
+        if (nextTask) {
+
+            switch (currentLevel) {
+                case 1:
+
+                    switch (currentTask) {
+                        case 1:
+                            //example
+                            createTask("can", 1, "Pie", 0, 3, "hurray", "nay")
+                    }
+            }
+
+            ++currentTask
+            nextTask = false
+        } else {
+            checkTask()
+        }
+    }
 }
