@@ -59,7 +59,7 @@ document.addEventListener( "keydown", onKeyPress )
 document.addEventListener( "keyup", onKeyRelese )
 document.addEventListener( "mousemove", onMouseMove )
 
-document.addEventListener( "pointerlockchange", () => { lockedPointer = !lockedPointer } )
+document.addEventListener( "pointerlockchange", () => { lockedPointer = ( document.pointerLockElement === container ) } )
 
 container.onclick = function() {
     container.requestPointerLock()

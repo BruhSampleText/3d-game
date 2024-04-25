@@ -126,7 +126,7 @@ registerLevel( {
         [1300,0,-900,0,90,0,1200,200,  "brickwallpaper.jfif"], //siena111
     ],
 
-    objects : [
+    entites : [
         
     ]
 }, "peat" )

@@ -102,7 +102,8 @@ function updateTopBar(dt) {
     }
     
 
-    showTime.innerHTML = `${seconds}`
+    let min = Math.floor( seconds/60 )
+    showTime.innerHTML = ` ${min}:${ Math.floor( seconds%60 ) } `
     showPoints.innerHTML = `Points<br>${gamePoints}`
     showFPS.innerHTML = `${gameFPS}`
     showKeys.innerHTML = `Keys<br>${gameKeys}`

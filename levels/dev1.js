@@ -17,7 +17,7 @@ registerLevel( {
         [0, 100, 0, 90, 0, 0, 3000, 3000, "wall.jpg"],
     ],
 
-    objects : [
+    entites : [
         
     ]
 }, "devLevel" )
