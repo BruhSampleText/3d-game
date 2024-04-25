@@ -28,20 +28,9 @@
 	height: 100px;
 	margin-top: 20px;
 	margin-left: 300px;
-	/* the colour is temporary */
-	/* background-color: aliceblue; */
 	z-index: 1;
 }
 
-.topBox {
-	position: absolute;
-	height: 40px;
-	width: 40px;
-	margin-top: 20px;
-	text-align: center;
-	color: white;
-	text-shadow: 0 0 3px black, 0 0 5px black
-}
 #timeBox {
 	margin-top: 25px;
 	margin-left: 46.5%;
@@ -55,7 +44,24 @@
 	margin-left: 6.5%;
 }
 #keyCountBox {
-	margin-left: 86.5%;
+	margin-left: 86%;
+}
+
+#sideBar {
+	position: absolute;
+	display: flex;
+	width: 300px;
+	height: 400px;
+	margin-top: 140px;
+	margin-left: 890px;
+	z-index: 1;
+}
+
+#shortHand {
+	font-size: 20px;
+}
+#fullHand {
+	font-size: 15px;
 }
 
 #container {
@@ -80,4 +86,22 @@
 	position: absolute;
 	border-radius: 25px;
   }
+
+.topBox {
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	margin-top: 20px;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 3px black, 0 0 5px black
+}
+
+.sideBox {
+	position: absolute;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 3px black, 0 0 5px black;
+	width: 300px;
+}
   

@@ -5,6 +5,9 @@ let showPoints = document.getElementById('points')
 let showFPS = document.getElementById('fps')
 let showKeys = document.getElementById('keyCount')
 
+let shortHand = document.getElementById('shortHand')
+let fullHand = document.getElementById('fullHand')
+
 let dateThen = Math.round(new Date()/1000)
 let date
 let secondsThen = 0
@@ -22,15 +25,21 @@ let gameFPS = 0
 let timePassed = 0
 
 let opacityTop = 0
-let opacityChangeSpeed = 1
+let opacitySide = 0
+let opacityChangeSpeed = 1.5
 let opacityFadeInTime = 60
 let opacityV = 0
 
+let shortSide = 'Find my bolts'
+let fullSide = ''
+
 let resetSeconds = false
-let hasChanged = false
+let hasChangedTop = false
+let hasChangedSide = false
+let showWhatsHidden = false
 
-updateWindows = (dt) => {
-
+function updateTopBar(dt) {
+    
     date = Math.round(new Date()/1000)
     seconds = date-dateThen
 
@@ -43,12 +52,12 @@ updateWindows = (dt) => {
 
     if (gamePointsThen === truePoints) {}
     else {
-        hasChanged = true
+        hasChangedTop = true
         gamePointsThen = truePoints
     }
     if (gameKeysThen === trueKeys) {}
     else {
-        hasChanged = true
+        hasChangedTop = true
         gameKeysThen = trueKeys
     }
 
@@ -66,16 +75,22 @@ updateWindows = (dt) => {
     }
 
     // For making the points and keys appear
-    if (hasChanged) {
-        if (opacityTop === opacityFadeInTime + 100) {
-            hasChanged = false
+    if (hasChangedTop) {
+        if (opacityTop >= opacityFadeInTime + 100) {
+            if (showWhatsHidden) {}
+            else {
+                hasChangedTop = false
+            }
+            opacityTop = opacityFadeInTime + 100
             gamePointsThen = gamePoints
             gameKeysThen = gameKeys
         } else {
             opacityTop += opacityChangeSpeed
         }
     } else {
-        if (opacityTop === 0) {}
+        if (opacityTop <= 0) {
+            opacityTop = 0
+        }
         else {
             opacityTop -= opacityChangeSpeed
         }
@@ -94,4 +109,42 @@ updateWindows = (dt) => {
 
     showPoints.style.opacity = `${opacityTop}%`
     showKeys.style.opacity = `${opacityTop}%`
+}
+
+function updateSideBar(dt) {
+
+    if (hasChangedSide) {
+        if (opacitySide >= opacityFadeInTime + 100) {
+            if (showWhatsHidden) {
+                hasChangedSide = false
+            }
+            opacitySide = opacityFadeInTime + 100
+        } else {
+            opacitySide += opacityChangeSpeed
+        }
+    } else {
+        if (opacitySide <= 0) {
+            opacitySide = 0
+        }
+        else {
+            opacitySide -= opacityChangeSpeed
+        }
+    }
+
+
+    fullHand.style.opacity = `${opacitySide}%`
+
+    shortHand.innerHTML = `${shortSide}`
+    fullHand.innerHTML = `${fullSide}`
+}
+
+
+updateWindows = (dt) => {
+    if (showWhatsHidden) {
+        hasChangedTop = true
+        hasChangedSide = true
+    }
+
+    updateTopBar(dt)
+    updateSideBar(dt)
 }
