@@ -14,12 +14,13 @@ let levelRegister = {}
 let currentLevelGeo = {}
 let currentLevelEntities = {}
 
-let updatePlayer = () => {}
+let id = 0
+let getId = () => { id++; return id }
 
 //	Getting player input!
 let keymap = { 
     KeyA : 0, KeyD : 0, KeyW : 0, KeyS : 0, KeyQ : 0, KeyE : 0, ShiftLeft : 0, KeyZ : 0, ControlLeft : 0, Space : 0, KeyV : 0,
-    KeyR : 0, KeyI : 0,
+    KeyR : 0, KeyI : 0, KeyEscape : 0,
 }
 
 function onKeyPress( event ) {
@@ -64,3 +65,43 @@ document.addEventListener( "pointerlockchange", () => { lockedPointer = ( docume
 container.onclick = function() {
     container.requestPointerLock()
 }
+
+//Messaging  service
+let subscriptions = []
+let subscribe = ( topic, callback ) => {
+    let id = getId()
+
+    subscriptions[ id ] = {
+        id: id,
+        topic: topic,
+        callback: callback,
+    }
+}
+let unsubscribe = ( id ) => {
+    
+    if ( subscriptions[ id ] ) {
+        subscriptions[ id ] = null
+    }
+
+}
+
+let publish = ( topic, payload ) => {
+    
+    for ( let index = 0; index < subscriptions.length; index++ ) {
+        let subscriber = subscriptions[ index ]
+
+        if ( !subscriber ) {
+            continue
+        }
+
+        if ( topic == "all" || subscriber.topic == 'all' || subscriber.topic == topic ) {
+            subscriber.callback( payload )
+        }
+
+    }
+
+}
+
+subscribe( "all", ( ...any ) => {
+    console.log( any )
+} )
