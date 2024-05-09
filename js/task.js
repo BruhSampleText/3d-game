@@ -149,6 +149,7 @@ function executeTaskes() {
             opacityTask = opacityFadeInTime + 120
 
             checkTask(currentTask)
+            updateTask(currentTask)
         } else {
             opacityTask += opacityChangeSpeed
         }
