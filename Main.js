@@ -101,7 +101,3 @@ let publish = ( topic, payload ) => {
     }
 
 }
-
-subscribe( "all", ( ...any ) => {
-    console.log( any )
-} )

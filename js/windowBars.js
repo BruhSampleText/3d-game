@@ -140,7 +140,7 @@ function updateSideBar(dt) {
 }
 
 
-updateWindows = (dt) => {
+subscribe( "RenderStep", (dt) => {
     if (showWhatsHidden) {
         hasChangedTop = true
         hasChangedSide = true
@@ -148,4 +148,4 @@ updateWindows = (dt) => {
 
     updateTopBar(dt)
     updateSideBar(dt)
-}
+} )

@@ -41,7 +41,7 @@ let collisionCheck = ( mapObj ) => {
 }
 
 
-updatePlayer = ( dt ) => {
+subscribe( "HeartBeat", ( dt ) => {
     if (playerFlags.noclip) {
       playerVelocity = vec3(0, 0, 0)
 
@@ -71,15 +71,17 @@ updatePlayer = ( dt ) => {
 
     }
 
-    let dirForward = keymap.KeyW - keymap.KeyS
-    let dirSideways = keymap.KeyA - keymap.KeyD
-
-    let angle = playerRotation.y * deg
-    let cos = Math.cos( angle )
-    let sin = Math.sin( angle )
-
-    playerVelocity.x = (cos * dirSideways - sin * dirForward) * movementSpeed * speedIncrease * dt
-    playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
+    if ( playerFlags.alive ) {
+      let dirForward = keymap.KeyW - keymap.KeyS
+      let dirSideways = keymap.KeyA - keymap.KeyD
+  
+      let angle = playerRotation.y * deg
+      let cos = Math.cos( angle )
+      let sin = Math.sin( angle )
+  
+      playerVelocity.x = (cos * dirSideways - sin * dirForward) * movementSpeed * speedIncrease * dt
+      playerVelocity.z = (sin * dirSideways - -cos * dirForward) * movementSpeed * speedIncrease * dt
+    }
 
     // playerVelocity = checkForCollision( testMap, playerPosition, playerVelocity )
     if (playerFlags.noclip) {
@@ -89,8 +91,6 @@ updatePlayer = ( dt ) => {
     }
 
     playerPosition = addVec3( playerPosition, playerVelocity )
-
-    // playerPosition.y += (keymap.KeyE - keymap.KeyQ) * movementSpeed * dt
 
     playerRotation.y += dt * deltaMouseX * movementSpeed / 3
     playerRotation.x -= dt * deltaMouseY * movementSpeed / 3
@@ -102,7 +102,7 @@ updatePlayer = ( dt ) => {
 
     fixRotationVector( playerRotation )
     world.style.transform = "translateZ( 600px )" + getTransform( playerPosition, playerRotation )
-}
+})
 
 subscribe( "spawn player", ( position ) => {
   playerPosition = position

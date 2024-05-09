@@ -1,5 +1,6 @@
 let last = performance.now()
-let gameLoop = false
+let gameLoopActive = false
+let gamePaused = false
 
 function game() {
     let current = performance.now()
@@ -10,17 +11,21 @@ function game() {
         dt = 1
     }
 
-    if ( keymap.KeyEscape ) {
-        publish( "stop game" )
-        return
-    }
+    publish( "RenderStep", dt )
 
-    updatePlayer( dt )
-    updateWindows( dt )
-    request = requestAnimationFrame( game )
+    if ( !gamePaused )
+        publish( "HeartBeat", dt )
+
+    // updatePlayer( dt )
+    // updateWindows( dt )
+    
+    if (gameLoopActive)
+        requestAnimationFrame( game )
 }
 
 subscribe( "startgame", () => {
+    gameLoopActive = true
+    gamePaused = false
 
     loadLevel( "peat" )
 
